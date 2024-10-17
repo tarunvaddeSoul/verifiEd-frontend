@@ -1,7 +1,7 @@
 export const modules = [
     {
       id: 1,
-      title: "Introduction to SSI V2",
+      title: "Introduction to SSI",
       content:
         "Self-Sovereign Identity (SSI) is a model for managing digital identities where individuals have sole ownership and control over their personal data. This module covers the basic principles of SSI, its importance in the digital age, and how it differs from traditional identity management systems.",
       keyPoints: [
@@ -13,7 +13,7 @@ export const modules = [
     },
     {
       id: 2,
-      title: "Digital Identity Fundamentals V2",
+      title: "Digital Identity Fundamentals",
       content:
         "This module explores the core concepts of digital identity, including how identities are created, managed, and verified in the digital world. You'll learn about different types of digital identities and the technologies that support them.",
       keyPoints: [
@@ -25,7 +25,7 @@ export const modules = [
     },
     {
       id: 3,
-      title: "Blockchain and SSI V2",
+      title: "Blockchain and SSI",
       content:
         "Blockchain technology plays a crucial role in enabling Self-Sovereign Identity. This module delves into how blockchain supports SSI systems, focusing on concepts like decentralized identifiers (DIDs) and verifiable credentials.",
       keyPoints: [
@@ -37,7 +37,7 @@ export const modules = [
     },
     {
       id: 4,
-      title: "Privacy and Security in SSI V2",
+      title: "Privacy and Security in SSI",
       content:
         "Privacy and security are paramount in SSI systems. This module covers the various techniques and protocols used to ensure data protection, user privacy, and secure interactions within SSI ecosystems.",
       keyPoints: [
@@ -49,7 +49,7 @@ export const modules = [
     },
     {
       id: 5,
-      title: "Implementing SSI Solutions V2",
+      title: "Implementing SSI Solutions",
       content:
         "The final module focuses on practical aspects of implementing SSI solutions. You'll learn about existing SSI frameworks, tools, and best practices for integrating SSI into various applications and systems.",
       keyPoints: [
