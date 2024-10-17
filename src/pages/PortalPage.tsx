@@ -12,7 +12,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "../components/ui/dialog";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -24,7 +23,7 @@ import { modules } from "../lib/modules";
 export default function PortalPage() {
   const [hasPHC, setHasPHC] = useState(false);
   const [connectionId, setConnectionId] = useState("");
-  const [outOfBandId, setOutOfBandId] = useState("");
+  const [, setOutOfBandId] = useState("");
   const [completedModules, setCompletedModules] = useState<number[]>([]);
   const [currentModule, setCurrentModule] = useState(1);
   const [loading, setLoading] = useState(false);

@@ -42,7 +42,7 @@ export default function PHCPage() {
   const [ifscCode, setIfscCode] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [bankVerificationSuccess, setBankVerificationSuccess] = useState(false);
+  const [, setBankVerificationSuccess] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);

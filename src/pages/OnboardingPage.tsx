@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -23,10 +23,10 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [proofUrl, setProofUrl] = useState<string | null>(null);
-  const [proofId, setProofId] = useState<string | null>(null);
+  const [, setProofId] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [credentialUrl, setCredentialUrl] = useState<string | null>(null);
-  const [credentialId, setCredentialId] = useState<string | null>(null);
+  const [, setCredentialId] = useState<string | null>(null);
 
   const verifyPersonhood = async () => {
     setLoading(true);
