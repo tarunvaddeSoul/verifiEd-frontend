@@ -38,7 +38,7 @@ export default function SkillsPage() {
         );
       }
       const verificationResponse = await axios.get(
-        `${process.env.BASE_URL}/verification/skills/connectionId/${connectionId}`
+        `${process.env.REACT_APP_BASE_URL}/verification/skills/connectionId/${connectionId}`
       );
       const proofRecordId = verificationResponse.data.data.proofRecord.id;
 
@@ -46,7 +46,7 @@ export default function SkillsPage() {
       while (state !== "done" && state !== "abandoned") {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         const stateResponse = await axios.get(
-          `${process.env.BASE_URL}/verification/verification-state/id/${proofRecordId}`
+          `${process.env.REACT_APP_BASE_URL}/verification/verification-state/id/${proofRecordId}`
         );
         state = stateResponse.data.data.state;
         if (state === "abandoned") {
@@ -55,7 +55,7 @@ export default function SkillsPage() {
       }
 
       const dataResponse = await axios.get(
-        `${process.env.BASE_URL}/verification/requested-data/id/${proofRecordId}`
+        `${process.env.REACT_APP_BASE_URL}/verification/requested-data/id/${proofRecordId}`
       );
       const requestedProof =
         dataResponse.data.data.requestedProof.revealed_attr_groups;

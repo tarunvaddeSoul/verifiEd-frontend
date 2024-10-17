@@ -47,7 +47,7 @@ export default function PortalPage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.BASE_URL}/agent/create-invitation`
+        `${process.env.REACT_APP_BASE_URL}/agent/create-invitation`
       );
       setInvitationUrl(response.data.data.invitationUrl);
       setOutOfBandId(response.data.data.outOfBandId);
@@ -69,7 +69,7 @@ export default function PortalPage() {
     while (attempts < maxAttempts) {
       try {
         const response = await axios.get(
-          `${process.env.BASE_URL}/agent/connection-state/id/${outOfBandId}`
+          `${process.env.REACT_APP_BASE_URL}/agent/connection-state/id/${outOfBandId}`
         );
         if (response.data.data.state === "completed") {
           setConnectionId(response.data.data.connectionId);
@@ -93,7 +93,7 @@ export default function PortalPage() {
     setVerificationInProgress(true);
     try {
       const response = await axios.post(
-        `${process.env.BASE_URL}/verification/verify-phc/connectionId/${connectionId}`
+        `${process.env.REACT_APP_BASE_URL}/verification/verify-phc/connectionId/${connectionId}`
       );
       const proofId = response.data.data.proofRecord.id;
       await checkPHCVerificationState(proofId);
@@ -116,7 +116,7 @@ export default function PortalPage() {
     while (attempts < maxAttempts) {
       try {
         const response = await axios.get(
-          `${process.env.BASE_URL}/verification/verification-state/id/${proofId}`
+          `${process.env.REACT_APP_BASE_URL}/verification/verification-state/id/${proofId}`
         );
 
         const verificationState = response.data.data.state;
@@ -158,7 +158,7 @@ export default function PortalPage() {
     try {
       const moduleName = modules[moduleId - 1].title;
       const response = await axios.post(
-        `${process.env.BASE_URL}/verification/verify/${encodeURIComponent(moduleName)}`,
+        `${process.env.REACT_APP_BASE_URL}/verification/verify/${encodeURIComponent(moduleName)}`,
         { connectionId }
       );
       const proofId = response.data.data.proofRecord.id;
@@ -226,7 +226,7 @@ export default function PortalPage() {
     while (attempts < maxAttempts) {
       try {
         const response = await axios.get(
-          `${process.env.BASE_URL}/verification/verification-state/id/${proofId}`
+          `${process.env.REACT_APP_BASE_URL}/verification/verification-state/id/${proofId}`
         );
 
         const verificationState = response.data.data.state;
@@ -264,7 +264,7 @@ export default function PortalPage() {
 
     try {
       const response = await axios.post(
-        `${process.env.BASE_URL}/issuance/issue/${moduleName}`,
+        `${process.env.REACT_APP_BASE_URL}/issuance/issue/${moduleName}`,
         {
           name: userName,
           marks: (Math.floor(Math.random() * 21) + 80).toString(),
@@ -286,7 +286,7 @@ export default function PortalPage() {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       try {
         const response = await axios.get(
-          `${process.env.BASE_URL}/issuance/credential-state/id/${id}`
+          `${process.env.REACT_APP_BASE_URL}/issuance/credential-state/id/${id}`
         );
         state = response.data.data.state;
         if (state === "done") {

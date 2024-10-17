@@ -86,7 +86,7 @@ export default function PerformancePage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.BASE_URL}/verification/check-performance/connectionId/${connectionId}`
+        `${process.env.REACT_APP_BASE_URL}/verification/check-performance/connectionId/${connectionId}`
       );
       const proofRecordId = response.data.data.proofRecord.id;
       await checkVerificationState(proofRecordId);
@@ -107,7 +107,7 @@ export default function PerformancePage() {
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Poll every 2 seconds
       try {
         const response = await axios.get(
-          `${process.env.BASE_URL}/verification/verification-state/id/${id}`
+          `${process.env.REACT_APP_BASE_URL}/verification/verification-state/id/${id}`
         );
         state = response.data.data.state;
         if (state === "done") {
@@ -135,7 +135,7 @@ export default function PerformancePage() {
   const fetchMarks = async (id: string) => {
     try {
       const response = await axios.get(
-        `${process.env.BASE_URL}/verification/requested-data/id/${id}`
+        `${process.env.REACT_APP_BASE_URL}/verification/requested-data/id/${id}`
       );
       const requestedProof = response.data.data.requestedProof.revealed_attrs;
 

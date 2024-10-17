@@ -80,7 +80,7 @@ export default function PHCPage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.BASE_URL}/agent/create-invitation`
+        `${process.env.REACT_APP_BASE_URL}/agent/create-invitation`
       );
       setInvitationUrl(response.data.data.invitationUrl);
       checkConnectionState(response.data.data.outOfBandId);
@@ -101,7 +101,7 @@ export default function PHCPage() {
     while (attempts < maxAttempts) {
       try {
         const response = await axios.get(
-          `${process.env.BASE_URL}/agent/connection-state/id/${outOfBandId}`
+          `${process.env.REACT_APP_BASE_URL}/agent/connection-state/id/${outOfBandId}`
         );
         if (response.data.data.state === "completed") {
           const connectionId = response.data.data.connectionId;
@@ -128,7 +128,7 @@ export default function PHCPage() {
   const verifyExistingPHC = async () => {
     try {
       const response = await axios.post(
-        `${process.env.BASE_URL}/phc/check-and-issue/theirLabel/${theirLabel}`
+        `${process.env.REACT_APP_BASE_URL}/phc/check-and-issue/theirLabel/${theirLabel}`
       );
       if (response.data.data.shouldIssueNewPHC) {
         setCurrentStep(2);
@@ -151,7 +151,7 @@ export default function PHCPage() {
 
   const authenticateUser = (method: string) => {
     if (method === "GITHUB") {
-      window.location.href = `${process.env.BASE_URL}/auth/github/login`;
+      window.location.href = `${process.env.REACT_APP_BASE_URL}/auth/github/login`;
     } else if (method === "BANK") {
       setVerificationMethod("BANK");
     }
@@ -161,7 +161,7 @@ export default function PHCPage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.BASE_URL}/verification/bank-verification/ifsc/${ifscCode}/accountNumber/${accountNumber}`
+        `${process.env.REACT_APP_BASE_URL}/verification/bank-verification/ifsc/${ifscCode}/accountNumber/${accountNumber}`
       );
       if (response.data.data.accountExists) {
         setName(response.data.data.nameAtBank);
@@ -191,7 +191,7 @@ export default function PHCPage() {
       ).toString();
       const encodedName = encodeURIComponent(name);
       const response = await axios.post(
-        `${process.env.BASE_URL}/issuance/issue-phc/name/${encodedName}/expiry/${expiryTimeInSeconds}/verificationMethod/${verificationMethod}/connectionId/${connectionId}`
+        `${process.env.REACT_APP_BASE_URL}/issuance/issue-phc/name/${encodedName}/expiry/${expiryTimeInSeconds}/verificationMethod/${verificationMethod}/connectionId/${connectionId}`
       );
       checkIssuanceState(response.data.data.credentialRecord.id);
     } catch (error) {
@@ -209,7 +209,7 @@ export default function PHCPage() {
     while (attempts < maxAttempts) {
       try {
         const response = await axios.get(
-          `${process.env.BASE_URL}/issuance/credential-state/id/${credentialRecordId}`
+          `${process.env.REACT_APP_BASE_URL}/issuance/credential-state/id/${credentialRecordId}`
         );
         if (response.data.data.state === "done") {
           await storePHCData();
@@ -241,7 +241,7 @@ export default function PHCPage() {
     try {
       const theirLabel = localStorage.getItem("theirLabel");
       const expiry = Math.floor(Date.now() / 1000 + 60 * 60 * 60).toString();
-      await axios.post(`${process.env.BASE_URL}/phc`, { theirLabel, expiry });
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/phc`, { theirLabel, expiry });
     } catch (error) {
       console.error("Failed to store PHC data:", error);
     }
