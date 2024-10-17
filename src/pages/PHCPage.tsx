@@ -35,7 +35,7 @@ export default function PHCPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [invitationUrl, setInvitationUrl] = useState("");
-  const [connectionId, setConnectionId] = useState("");
+  const [, setConnectionId] = useState("");
   const [theirLabel, setTheirLabel] = useState("");
   const [name, setName] = useState("");
   const [verificationMethod, setVerificationMethod] = useState("");
