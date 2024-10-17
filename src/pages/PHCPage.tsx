@@ -190,8 +190,9 @@ export default function PHCPage() {
         60 * 60 * 60
       ).toString();
       const encodedName = encodeURIComponent(name);
+      const storedConnectionId = localStorage.getItem("connectionId");
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/issuance/issue-phc/name/${encodedName}/expiry/${expiryTimeInSeconds}/verificationMethod/${verificationMethod}/connectionId/${connectionId}`
+        `${process.env.REACT_APP_BASE_URL}/issuance/issue-phc/name/${encodedName}/expiry/${expiryTimeInSeconds}/verificationMethod/${verificationMethod}/connectionId/${storedConnectionId}`
       );
       checkIssuanceState(response.data.data.credentialRecord.id);
     } catch (error) {
