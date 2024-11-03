@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { MoonIcon, SunIcon, TrashIcon } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { toast } from "../components/ui/use-toast";
 
-const NavLink = ({ to, children }: any) => (
+const NavLink = ({ to, children, disabled }: any) => (
   <Link
     to={to}
-    className="relative text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group"
+    className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group ${disabled
+        ? "text-gray-400 cursor-not-allowed"
+        : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+      }`}
+    aria-disabled={disabled}
   >
     {children}
-    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100">
-      <span className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-transparent to-white opacity-50 animate-gradient-fade"></span>
-    </span>
+    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
   </Link>
 );
 
@@ -47,9 +49,17 @@ const Logo = () => (
 
 export default function Navigation() {
   const { setTheme, theme } = useTheme();
+  const [modulesCompleted, setModulesCompleted] = useState(false);
+
+  useEffect(() => {
+    // Check localStorage to see if modules have been completed
+    const completed = localStorage.getItem("modulesCompleted") === "true";
+    setModulesCompleted(completed);
+  }, []);
 
   const clearLocalStorage = () => {
     localStorage.clear();
+    setModulesCompleted(false); // Reset modulesCompleted state
     toast({
       title: "Localstorage cleared",
       description: "All local data has been removed.",
@@ -64,15 +74,19 @@ export default function Navigation() {
             <Link to="/" className="flex items-center">
               <Logo />
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 text-transparent bg-clip-text hover:from-blue-500 hover:to-teal-500 transition-all duration-300">
-              VerifiEd
+                VerifiEd
               </span>
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
             <NavLink to="/portal">Training Modules</NavLink>
-            <NavLink to="/performance">Performance</NavLink>
-            <NavLink to="/skills">Skills</NavLink>
+            <NavLink to="/performance" disabled={!modulesCompleted}>
+              Performance
+            </NavLink>
+            <NavLink to="/skills" disabled={!modulesCompleted}>
+              Skills
+            </NavLink>
             <Link to="/phc">
               <Button
                 variant="outline"

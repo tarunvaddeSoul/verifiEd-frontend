@@ -172,9 +172,8 @@ export default function PortalPage() {
       } else {
         toast({
           title: "Verification Failed",
-          description: `Failed to verify completion of module ${
-            moduleId - 1
-          }. Please try again.`,
+          description: `Failed to verify completion of module ${moduleId - 1
+            }. Please try again.`,
           variant: "destructive",
         });
         return false;
@@ -273,6 +272,10 @@ export default function PortalPage() {
       );
 
       const credentialId = response.data.data.credentialRecord.id;
+      // If the module ID is 5, set modulesCompleted to true in localStorage
+      if (moduleId === 5) {
+        localStorage.setItem('modulesCompleted', 'true');
+      }
       await checkCredentialState(credentialId);
     } catch (error) {
       setError("Failed to issue credential. Please try again.");
@@ -315,19 +318,19 @@ export default function PortalPage() {
             <CardTitle>Connect Your Wallet</CardTitle>
           </CardHeader>
           <CardContent>
-          <div className="text-center">
-            <p className="mb-4">
-              To access the training modules, please connect your digital
-              wallet.
-            </p>
-            <Button onClick={createInvitation} disabled={loading}>
-              {loading ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                "Connect Wallet"
-              )}
-            </Button>
-          </div>
+            <div className="text-center">
+              <p className="mb-4">
+                To access the training modules, please connect your digital
+                wallet.
+              </p>
+              <Button onClick={createInvitation} disabled={loading}>
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  "Connect Wallet"
+                )}
+              </Button>
+            </div>
 
             {invitationUrl && (
               <div className="mt-4">
@@ -340,7 +343,7 @@ export default function PortalPage() {
           </CardContent>
         </Card>
       )}
-{connectionId && !hasPHC && (
+      {connectionId && !hasPHC && (
         <Card className="mb-6">
           <CardHeader>
             <CardTitle>Verify Personhood Credential</CardTitle>
