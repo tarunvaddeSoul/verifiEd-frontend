@@ -11,6 +11,7 @@ const NavLink = ({ to, children, disabled }: any) => (
     className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group
       ${disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"}`}
     onClick={(e) => disabled && e.preventDefault()}
+    title={disabled ? "Complete all modules to access this section" : ""}
   >
     {children}
     {!disabled && (
@@ -20,6 +21,7 @@ const NavLink = ({ to, children, disabled }: any) => (
     )}
   </Link>
 );
+
 
 const Logo = () => (
   <svg
