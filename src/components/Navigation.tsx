@@ -7,15 +7,17 @@ import { toast } from "../components/ui/use-toast";
 
 const NavLink = ({ to, children, disabled }: any) => (
   <Link
-    to={to}
-    className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group ${disabled
-        ? "text-gray-400 cursor-not-allowed"
-        : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-      }`}
-    aria-disabled={disabled}
+    to={disabled ? "#" : to}
+    className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 group
+      ${disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"}`}
+    onClick={(e) => disabled && e.preventDefault()}
   >
     {children}
-    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+    {!disabled && (
+      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100">
+        <span className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-transparent to-white opacity-50 animate-gradient-fade"></span>
+      </span>
+    )}
   </Link>
 );
 
@@ -81,12 +83,9 @@ export default function Navigation() {
 
           <div className="hidden md:flex items-center space-x-4">
             <NavLink to="/portal">Training Modules</NavLink>
-            <NavLink to="/performance" disabled={!modulesCompleted}>
-              Performance
-            </NavLink>
-            <NavLink to="/skills" disabled={!modulesCompleted}>
-              Skills
-            </NavLink>
+            <NavLink to="/performance" disabled={!modulesCompleted}>Performance</NavLink>
+            <NavLink to="/skills" disabled={!modulesCompleted}>Skills</NavLink>
+
             <Link to="/phc">
               <Button
                 variant="outline"
