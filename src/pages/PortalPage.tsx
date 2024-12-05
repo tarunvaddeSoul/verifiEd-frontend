@@ -360,7 +360,7 @@ export default function PortalPage() {
               {verificationInProgress ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                "Verify PHC"
+                "Verify Access Card"
               )}
             </Button>
           </CardContent>

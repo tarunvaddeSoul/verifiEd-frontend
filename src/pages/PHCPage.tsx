@@ -134,8 +134,8 @@ export default function PHCPage() {
         setCurrentStep(2);
       } else {
         toast({
-          title: "PHC Verified",
-          description: "Valid PHC already exists in your wallet.",
+          title: "Access Card Verified",
+          description: "Valid access card already exists in your wallet.",
           variant: "default",
         });
         setCurrentStep(4);
@@ -143,7 +143,7 @@ export default function PHCPage() {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to verify existing PHC. Please try again.",
+        description: "Failed to verify existing access card. Please try again.",
         variant: "destructive",
       });
     }
@@ -233,7 +233,7 @@ export default function PHCPage() {
     }
     toast({
       title: "Issuance Timeout",
-      description: "PHC issuance process timed out. Please try again.",
+      description: "Access Card issuance process timed out. Please try again.",
       variant: "destructive",
     });
   };
@@ -244,7 +244,7 @@ export default function PHCPage() {
       const expiry = Math.floor(Date.now() / 1000 + 60 * 60 * 60).toString();
       await axios.post(`${process.env.REACT_APP_BASE_URL}/phc`, { theirLabel, expiry });
     } catch (error) {
-      console.error("Failed to store PHC data:", error);
+      console.error("Failed to store Access Card data:", error);
     }
   };
 
@@ -253,7 +253,7 @@ export default function PHCPage() {
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="text-2xl">
-            Personhood Credential (PHC)
+            Access Card Credential
           </CardTitle>
           <CardDescription>
             A unique digital credential that verifies your identity as a real
@@ -311,7 +311,7 @@ export default function PHCPage() {
 
             {currentStep === 1 && (
               <div className="space-y-4">
-                <p>Verifying your existing PHC...</p>
+                <p>Verifying your existing access card...</p>
                 <Button onClick={verifyExistingPHC}>Verify PHC</Button>
               </div>
             )}
@@ -385,9 +385,9 @@ export default function PHCPage() {
 
             {currentStep === 3 && (
               <div className="space-y-4">
-                <p>Authentication successful. Ready to issue your PHC.</p>
+                <p>Authentication successful. Ready to issue your access card.</p>
                 <Button onClick={issuePHC} disabled={!name}>
-                  Issue New PHC
+                  Issue New Access Card
                 </Button>
               </div>
             )}
@@ -396,7 +396,7 @@ export default function PHCPage() {
               <Alert>
                 <AlertTitle>Success!</AlertTitle>
                 <AlertDescription>
-                  Your PHC has been issued and added to your wallet.
+                  Your access card has been issued and added to your wallet.
                 </AlertDescription>
               </Alert>
             )}

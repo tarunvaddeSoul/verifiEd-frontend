@@ -94,7 +94,7 @@ export default function Navigation() {
                 className="relative overflow-hidden group bg-gradient-to-r from-blue-500 to-teal-500 text-white border-none"
               >
                 <span className="relative z-10 font-semibold">
-                  Get your PHC Now!!
+                  Get Your Access Card Now!!
                 </span>
                 <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-teal-600 animate-gradient-x"></span>
                 <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out scale-0 rounded-md group-hover:scale-105 group-hover:bg-white group-hover:opacity-30"></span>
