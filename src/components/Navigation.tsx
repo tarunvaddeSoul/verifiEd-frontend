@@ -78,7 +78,7 @@ export default function Navigation() {
             <Link to="/" className="flex items-center">
               <Logo />
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 text-transparent bg-clip-text hover:from-blue-500 hover:to-teal-500 transition-all duration-300">
-                VerifiEd
+                SoulVerse
               </span>
             </Link>
           </div>
