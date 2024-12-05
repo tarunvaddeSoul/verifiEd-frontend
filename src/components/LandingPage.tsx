@@ -22,7 +22,7 @@ export default function LandingPage() {
             <CardTitle className="text-2xl font-bold text-blue-600">Prerequisites</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-lg mb-4">Before proceeding, please install the BC Wallet app:</p>
+            <p className="text-lg mb-4">Before proceeding, please install the SoulVerse Wallet app:</p>
             <div className="flex justify-center space-x-4">
               <a href="https://apps.apple.com/ca/app/bc-wallet/id1587380443" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline">
